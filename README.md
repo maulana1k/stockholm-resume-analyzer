@@ -37,35 +37,50 @@ Traditional resume screening is time-consuming, subjective, and often misses nua
 ## 📁 Project Structure
 
 ```
-ai-resume-analyzer/
+project-root/
+│
 ├── src/
-│   ├── core/                 # Core configurations
-│   │   ├── config.ts        # Environment configuration
-│   │   ├── database.ts      # Prisma client
-│   │   └── queue.ts         # BullMQ setup
-│   ├── routes/              # API routes
-│   │   ├── upload.ts        # File upload endpoint
-│   │   ├── evaluate.ts      # Evaluation trigger
-│   │   └── result.ts        # Result retrieval
-│   ├── services/            # Business logic
-│   │   ├── file-service.ts  # File handling
-│   │   ├── llm-service.ts   # AI integration
-│   │   ├── rag-service.ts   # Vector search
-│   │   ├── eval-service.ts  # Evaluation pipeline
-│   │   └── queue-service.ts # Queue management
-│   ├── workers/             # Background jobs
-│   │   └── evaluation-worker.ts
-│   ├── controllers/         # Request handlers
-│   ├── types/               # TypeScript definitions
-│   └── app.ts              # Application entry point
+│   ├── core/
+│   │   ├── config.ts                   # Environment configurations
+│   │   ├── database.ts                 # Prisma client instance
+│   │   └── queue.ts                    # BullMQ Redis setup
+│   │
+│   ├── api/
+│   │   └── index.ts                    # Route registration
+│   ├── handler/
+│   │   ├── evaluate.handler.ts         # Evaluate routes handler
+│   │   ├── upload.handler.ts           # Upload file handler
+│   │
+│   ├── services/
+│   │   ├── documents/
+│   │   │   └── file-service.ts         # File upload & text extraction
+│   │   ├── evaluation/
+│   │   │   └── eval-service.ts         # Main evaluation pipeline
+│   │   ├── queue/
+│   │   │   └── queue-service.ts        # Job queue management
+│   │   └── llm/
+│   │       |── embeddding-service.ts   # Embedding text into vector
+│   │       ├── llm-service.ts          # LLM calls with prompt chaining
+│   │       └── rag-service.ts          # Vector search & context retrieval
+│   │
+│   ├── workers/
+│   │   └── evaluation-worker.ts        # Background job processor
+│   │
+│   ├── types/
+│   │   ├── evaluation.ts               # TypeScript interfaces
+│   │   └── api.ts                      # API request/response types
+│   │
+│   └── app.ts                          # Hono app setup
+│   └── index.ts                        # Application entry point
+│
 ├── scripts/
-│   ├── seed-vector-db.ts   # Vector DB initialization
-│   └── init-db.ts          # Database setup
-├── prisma/
-│   └── schema.prisma       # Database schema
-├── storage/                # File storage
-├── docs/                   # API documentation
-└── docker-compose.yml      # Container orchestration
+│   ├── init-db.ts                      # Database initialization
+│   └── seed-vectors.ts                 # Qdrant job description seeding
+│
+├── storage/uploads/                    # Local file storage
+├── prisma/schema.prisma                # Database schema
+├── docs/openapi.json                   # API specification
+└── docker-compose.yml                  # Development environment
 ```
 
 ## 🚀 API Features
