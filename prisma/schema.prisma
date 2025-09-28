@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Document {
+  id        String       @id @default(uuid())
+  author    String
+  type      DocumentType
+  filePath  String
+  fileName  String
+  fileSize  Int
+  mimeType  String
+  createdAt DateTime     @default(now())
+
+  cvJobs      EvaluationJob[] @relation("CVDocument")
+  projectJobs EvaluationJob[] @relation("ProjectDocument")
+
+  @@map("documents")
+}
+
+model EvaluationJob {
+  id                String    @id @default(uuid())
+  status            JobStatus @default(QUEUED)
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  author            String
+  jobVacancyId      String
+  cvDocumentId      String
+  projectDocumentId String
+
+  cvDocument      Document @relation("CVDocument", fields: [cvDocumentId], references: [id])
+  projectDocument Document @relation("ProjectDocument", fields: [projectDocumentId], references: [id])
+
+  result EvaluationResult?
+
+  @@map("evaluation_jobs")
+}
+
+model EvaluationResult {
+  id    String        @id @default(uuid())
+  jobId String        @unique
+  job   EvaluationJob @relation(fields: [jobId], references: [id])
+
+  cvMatchRate Float?
+  cvFeedback  String?
+  cvScores    Json?
+
+  projectScore    Float?
+  projectFeedback String?
+  projectScores   Json?
+
+  overallSummary String?
+  processedAt    DateTime?
+
+  @@map("evaluation_results")
+}
+
+model KnowledgeBase {
+  id         String        @id @default(uuid())
+  type       KnowledgeType
+  content    String        @db.Text
+  embeddings Json?
+  createdAt  DateTime      @default(now())
+
+  @@map("knowledge_base")
+}
+
+enum JobStatus {
+  QUEUED
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+enum DocumentType {
+  CV
+  PROJECT_REPORT
+}
+
+enum KnowledgeType {
+  JOB_DESCRIPTION
+  SCORING_RUBRIC
+}

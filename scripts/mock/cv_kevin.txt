@@ -1,0 +1,52 @@
+KEVIN
+Senior Backend Developer
+john.doe@email.com | +1-555-0123 | GitHub: johndoe-dev
+
+SUMMARY
+Senior Backend Developer with 6 years of experience building scalable distributed systems. 
+Specialized in Node.js, microservices architecture, and AI platform development. 
+Led teams of 5+ developers on high-traffic applications serving millions of users.
+
+TECHNICAL SKILLS
+- Backend: Node.js, TypeScript, Python, Express.js, FastAPI
+- Databases: PostgreSQL, Redis, MongoDB, Qdrant, Elasticsearch
+- Cloud & DevOps: AWS (EC2, S3, RDS), Docker, Kubernetes, GitHub Actions
+- AI/ML: OpenAI API, LangChain, vector databases, RAG systems
+- Message Queues: BullMQ, RabbitMQ, Apache Kafka
+
+PROFESSIONAL EXPERIENCE
+
+Senior Backend Engineer | TechInnovate AI | 2020 - Present
+- Led development of AI-powered candidate evaluation platform serving 50K+ users
+- Designed microservices architecture handling 10M+ daily API requests
+- Implemented RAG system with Qdrant vector database for context retrieval
+- Built real-time evaluation pipeline with BullMQ job queues
+- Reduced API response time by 40% through Redis caching optimization
+- Mentored 3 junior developers and established coding standards
+
+Backend Developer | CloudSolutions Inc | 2018 - 2020
+- Developed RESTful APIs for SaaS platform with 1M+ users
+- Implemented real-time features using WebSockets and Redis Pub/Sub
+- Designed database schemas and optimized SQL queries
+- Created automated deployment pipelines with Docker and Kubernetes
+
+EDUCATION
+Bachelor of Computer Science | University of Technology | 2014 - 2018
+
+CERTIFICATIONS
+- AWS Certified Solutions Architect
+- Docker Certified Associate
+- OpenAI API Specialist
+
+PROJECTS
+
+AI Evaluation Engine
+- Built scalable backend for AI-powered candidate assessment
+- Integrated multiple LLM providers with fallback mechanisms
+- Implemented comprehensive error handling and retry logic
+- Designed vector database architecture for efficient similarity search
+
+Real-time Notification System
+- Developed high-throughput message queue system
+- Achieved 99.9% uptime with circuit breaker pattern
+- Implemented rate limiting and load balancing
